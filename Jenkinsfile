@@ -21,34 +21,34 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-                script {
-                    def scannerHome = tool name: 'SonarQube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                    def javaHome = tool name: 'JAVA_HOME', type: 'hudson.model.JDK'
+     //   stage('SonarQube Analysis') {
+       //     steps {
+        //        script {
+       //             def scannerHome = tool name: 'SonarQube', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+       //             def javaHome = tool name: 'JAVA_HOME', type: 'hudson.model.JDK'
 
-                    withEnv(["JAVA_HOME=${javaHome}", "SONAR_HOST_URL=http://192.168.1.160:9000"]) {
-                        withSonarQubeEnv('SonarQube') {
-                            sh """
-                                ${scannerHome}/bin/sonar-scanner \
-                                -Dsonar.login=admin \
-                                -Dsonar.password=vagrant \
-                                -Dsonar.projectKey=Back \
-                                -Dsonar.java.binaries=target/classes
-                            """
-                        }
-                    }
-                }
-            }
-        }
+     //               withEnv(["JAVA_HOME=${javaHome}", "SONAR_HOST_URL=http://192.168.1.160:9000"]) {
+      //                withSonarQubeEnv('SonarQube') {
+       //                     sh """
+        //                        ${scannerHome}/bin/sonar-scanner \
+         //                       -Dsonar.login=admin \
+            //                    -Dsonar.password=vagrant \
+            //                    -Dsonar.projectKey=Back \
+              //                  -Dsonar.java.binaries=target/classes
+               //             """
+                //        }
+                //    }
+//                }
+ //           }
+  //      }
 
-        stage('Deploy to Nexus') {
-            steps {
-                script {
-                    sh "mvn deploy -DskipTests=true"
-                }
-            }
-        }
+//        stage('Deploy to Nexus') {
+ //           steps {
+  //              script {
+   //                 sh "mvn deploy -DskipTests=true"
+    //            }
+     //       }
+      //  }
 
         stage('Build Docker Image') {
             steps {
@@ -79,10 +79,10 @@ pipeline {
                 sh 'docker-compose up -d'
             }
         }
-        stage('Start Start Grafana & Prometheus') {
-            steps {
-                sh 'docker start grafana prometheus'
-            }
-        }
+    //    stage('Start Start Grafana & Prometheus') {
+     //       steps {
+      //          sh 'docker start grafana prometheus'
+     //       }
+      //  }
     }
 }
