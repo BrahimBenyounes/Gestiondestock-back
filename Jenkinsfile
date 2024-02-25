@@ -33,7 +33,7 @@ pipeline {
                                 ${scannerHome}/bin/sonar-scanner \
                                 -Dsonar.login=admin \
                                 -Dsonar.password=vagrant \
-                                -Dsonar.projectKey=1st_Sonar \
+                                -Dsonar.projectKey=Back \
                                 -Dsonar.java.binaries=target/classes
                             """
                         }
@@ -61,7 +61,7 @@ pipeline {
         stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
-                    sh "docker login -u \$DOCKER_HUB_USERNAME -p \$DOCKER_HUB_PASSWORD"
+                    sh "docker login -u \brahimbenyouns@gmail.com -p \Lifeisgoodbrahim@@ "
                     sh "docker tag ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION} \$DOCKER_HUB_USERNAME/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}"
                     sh "docker push \$DOCKER_HUB_USERNAME/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}"
                 }
